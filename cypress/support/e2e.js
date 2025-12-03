@@ -14,4 +14,10 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import "./commands";
+
+// Garante screenshot em toda falha
+Cypress.on("fail", (error, runnable) => {
+  cy.screenshot(`FAILED_${runnable.title.replace(/\s+/g, "_")}`);
+  throw error;
+});
